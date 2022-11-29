@@ -13,10 +13,12 @@
 
 require_once("./1_arrays.php");
 
-foreach ($array as $key => $value) 
+foreach ($array as $key => $value ) 
 {
-    echo("<ul>$key");
-    echo("<li>$value</li>");
+    echo("<ul>".$key);
+    echo("<li>".'Nota DWES :'.$value["DWES"]."</li>");
+    echo("<li>".'Nota DWEC :'.$value["DWEC"]."</li>");
+    echo("</ul>");
 }
 
 ?>
@@ -30,9 +32,12 @@ foreach ($array as $key => $value)
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post">
-    <div id = 'radiogroup'>
-    <input type="radio" name="color" value="azul"> Azul
+    <form action="./3_controlador.php" method="post">
+        <div id = 'radiogroup'>
+            <input type="radio" name="DWEC" value="dwec"> DWEC
+            <input type="radio" name="DWES" value="dwes"> DWES
+            <input type="submit" value="Enviar datos">
+        </div>
     </form>
 </body>
 </html>

@@ -7,3 +7,33 @@
  * Añadir por cada estudiante, una clave más "DWEC" con números aleatorios entre 1 y 10.
  * 
  */
+
+ $array =
+ [
+    "Juan" => 
+    [
+        "DWES" => rand(1,10),
+    ],
+    "Pepe" => 
+    [
+        "DWES" => rand(1,10),
+    ],
+    "Pedro" => 
+    [
+        "DWES" => rand(1,10),
+    ],
+    "Siro" => 
+    [
+        "DWES" => rand(1,10),
+    ],
+ ];
+$asignatura = rand(1,10);
+
+
+
+ foreach ($array as $key => $value) 
+ {
+    $array[$key]["DWEC"] = $asignatura;    
+ }
+
+ 
