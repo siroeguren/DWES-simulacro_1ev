@@ -10,7 +10,8 @@
 
 $alumnos = ["Juan", "Marta", "Menganito", "Fabio", "Jaime"];
 
-// $notas = [
+//Ej: 
+//$notas = [
 //     "Juan"=>
 //     [
 //         "DWEC"=>5,
@@ -18,6 +19,7 @@ $alumnos = ["Juan", "Marta", "Menganito", "Fabio", "Jaime"];
 //     ],
 //     "Marta"=>["DWEC"=>5,"DWES"=>7],
 //     "Menanito"=>["DWEC"=>5,"DWES"=>7],
+//]
 
 
 $notas = [];
