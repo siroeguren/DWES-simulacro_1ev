@@ -27,13 +27,12 @@
         "DWES" => rand(1,10),
     ],
  ];
-$asignatura = rand(1,10);
 
 
 
  foreach ($array as $key => $value) 
  {
-    $array[$key]["DWEC"] = $asignatura;    
+    $array[$key]["DWEC"] = rand(1,10);    
  }
 
  

@@ -13,6 +13,10 @@
 
 require_once("./1_arrays.php");
 
+$notaMedia = [];
+$notaMediaFinal = [];
+
+//Creacion de la lista iterando el array
 foreach ($array as $key => $value ) 
 {
     echo("<ul>".$key);
@@ -21,8 +25,10 @@ foreach ($array as $key => $value )
     echo("</ul>");
 }
 
-echo("<hr>");
 
+
+
+// Control de filltro con radiogroup
 if (!empty($_POST))
 {
     foreach ($array as $key => $value) 
@@ -37,9 +43,24 @@ if (!empty($_POST))
     
 }
  
+//Control de filtro con parametros de URL
+if (!empty($_GET))
+{
+    foreach ($array as $key => $value) 
+    {
+        foreach ($_GET as $asig) 
+        {
+            echo("<ul>".$key);
+            echo("<li>".'Nota :'.$asig.' :'.$value[$asig]."</li>");
+            echo("</ul>");
+        }
+    }
+    
+}
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,13 +70,51 @@ if (!empty($_POST))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<script>
+ this.onload = () => 
+    {
+        document.getElementById("ejJson").addEventListener("click","json")
+    }
+
+function json()
+{
+    <?php
+    global $array;
+    //Creacion de fichero JSON
+    $jsonEncoded = json_encode($array,JSON_UNESCAPED_UNICODE);
+    file_put_contents('./jsonAlumnos.json',$jsonEncoded);
+
+
+
+    //Nota media de cada alumno
+    $jsonAlumnos = file_get_contents('./jsonAlumnos.json');
+    $jsonAlumnosDecode = json_decode($jsonAlumnos, true, 512, JSON_UNESCAPED_UNICODE);
+
+    foreach ($jsonAlumnosDecode as $key => $value) 
+    {
+    global $suma;
+    foreach ($value as $llave => $nota) 
+        {
+        $suma += $nota;
+        }
+
+        echo("La nota media del alumno ".$key." es: " .$suma/2 ."<br>");
+        $suma = 0;
+    }
+    ?>
+}
+
+</script>
 <body>
     <form action="./2_formulario.php" method="post">
         <div id = 'radiogroup'>
-            <input type="radio" name="DWEC" value="DWEC"> DWEC
-            <input type="radio" name="DWES" value="DWES"> DWES
-            <input type="submit" value="Filtrar>
+            <input type="radio" name="ASIGNATURA" value="DWEC"> DWEC
+            <input type="radio" name="ASIGNATURA" value="DWES"> DWES
+            <input type="submit" value="Filtrar">
         </div>
     </form>
+    <button  onClick="location.href='./2_formulario.php?asig=DWEC'" > DWEC URL </button>
+    <button  onClick="location.href='./2_formulario.php?asig=DWES'" > DWES URL </button>
+    <button id ="ejJSon" > EjercicioJSON </button>
 </body>
 </html>
