@@ -21,6 +21,24 @@ foreach ($array as $key => $value )
     echo("</ul>");
 }
 
+echo("<hr>");
+
+if (!empty($_POST))
+{
+    foreach ($array as $key => $value) 
+    {
+        foreach ($_POST as $asig) 
+        {
+            echo("<ul>".$key);
+            echo("<li>".'Nota :'.$asig.' :'.$value[$asig]."</li>");
+            echo("</ul>");
+        }
+    }
+    
+}
+ 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +50,11 @@ foreach ($array as $key => $value )
     <title>Document</title>
 </head>
 <body>
-    <form action="./3_controlador.php" method="post">
+    <form action="./2_formulario.php" method="post">
         <div id = 'radiogroup'>
-            <input type="radio" name="DWEC" value="dwec"> DWEC
-            <input type="radio" name="DWES" value="dwes"> DWES
-            <input type="submit" value="Enviar datos">
+            <input type="radio" name="DWEC" value="DWEC"> DWEC
+            <input type="radio" name="DWES" value="DWES"> DWES
+            <input type="submit" value="Filtrar>
         </div>
     </form>
 </body>
