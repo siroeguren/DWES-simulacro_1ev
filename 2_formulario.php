@@ -35,7 +35,7 @@ if (!empty($_POST))
     {
         foreach ($_POST as $asig) 
         {
-            echo("<ul>".$key);
+            echo("<ul>".$key);            
             echo("<li>".'Nota :'.$asig.' :'.$value[$asig]."</li>");
             echo("</ul>");
         }
@@ -92,13 +92,12 @@ function json()
 
     foreach ($jsonAlumnosDecode as $key => $value) 
     {
-    global $suma;
-    foreach ($value as $llave => $nota) 
+        global $suma;
+        foreach ($value as $llave => $nota) 
         {
-        $suma += $nota;
+            $suma += $nota;
         }
-
-        echo("La nota media del alumno ".$key." es: " .$suma/2 ."<br>");
+        echo("La nota media del alumno ".$key." es: " .$suma/count($value) ."<br>");
         $suma = 0;
     }
     ?>
